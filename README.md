@@ -30,7 +30,7 @@ Step 12: Create the EC2 instance and configure it with an docker and nginx serve
 Step 13: Open the terminal and run the following commands.
 $ terraform init // initialise terraform
 $ terraform fmt // format the code
-$ terraform plan // This will show you what resources terraform will create$ terraform apply // This will create all the resources in your AWS account.
-$ terraform apply // This will create all the resources in your AWS account
+$ terraform plan -out=/var/tmp/plan.out // This will show you what resources terraform will create$ terraform apply // This will create all the resources in your AWS account.
+$ terraform apply "/var/tmp/plan.out" // This will create all the resources in your AWS account
 
 Step 14: Log into your AWS account, and you should see the nginx_server EC2.
