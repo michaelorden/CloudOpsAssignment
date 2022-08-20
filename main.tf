@@ -124,7 +124,7 @@ resource "aws_instance" "nginx_server" {
     destination = "/tmp/nginx1.sh"
   }
   # Executing the nginx.sh file
-  # Terraform does not reccomend this method becuase Terraform state file cannot track what the scrip is provissioning
+  # Terraform does not recommend this method becuase Terraform state file cannot track what the scrip is provissioning
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/nginx1.sh",
