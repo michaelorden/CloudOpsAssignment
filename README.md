@@ -25,7 +25,7 @@ Step 10: Add the following code block in the main.tf file to associate an SSH pu
 
 Step 11: We will use Terraform Provisioners to configure our AWS Nginx server in our AWS EC2. Terraform documentation strongly suggests not using Provisioners unless it is the only way to do it. Typically provisioning would be handover to another tool such as Ansible. So, we will use Provisioners. Therefore, we need a shell script to configure Nginx. Create an nginx.sh file and copy the following code block.
 
-Step 12: Create the EC2 instance and configure it with an Nginx server.
+Step 12: Create the EC2 instance and configure it with an docker and nginx server.
 
 Step 13: Open the terminal and run the following commands.
 $ terraform init // initialise terraform
