@@ -36,18 +36,20 @@ $ terraform apply "/var/tmp/plan.out" // This will create all the resources in y
 Step 14: Log into your AWS account, and you should see the nginx_server EC2.
 
 Step 15: Login to the terminal and check health status of nginx web server daemon.
-$ docker ps
+$ ssh ubuntu@35.90.9.119
+$ sudo -i
+# docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 805b94e2dc7a   nginx     "/docker-entrypoint.…"   33 minutes ago   Up 33 minutes (Healthy)   0.0.0.0:8080->80/tcp, :::8080->80/tcp   docker-nginx
 
-$ docker inspect --format='{{json .State.Health}}' docker-nginx
+# docker inspect --format='{{json .State.Health}}' docker-nginx
 
 {"Status":"healthy","FailingStreak":0,"Log":[{"Start":"2022-08-21T12:34:11.145967064+12:00","End":"2022-08-21T12:34:11.469991083+12:00","ExitCode":0,"Output":"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   615  100   615    0     0   600k      0 --:--:-- --:--:-- --:--:--  600k\n<!DOCTYPE html>\n<html>\n<head>\n<title>Welcome to nginx!</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>Welcome to nginx!</h1>\n<p>If you see this page, the nginx web server is successfully installed and\nworking. Further configuration is required.</p>\n\n<p>For online documentation and support please refer to\n<a href=\"http://nginx.org/\">nginx.org</a>.<br/>\nCommercial support is available at\n<a href=\"http://nginx.com/\">nginx.com</a>.</p>\n\n<p><em>Thank you for using nginx.</em></p>\n</body>\n</html>\n"}
 
 Step 16: How to check container resource status.
 
-$ docker stats web --no-stream --format "{{ json . }}"
+# docker stats web --no-stream --format "{{ json . }}"
 {"BlockIO":"0B / 8.19kB","CPUPerc":"0.00%","Container":"docker-nginx","ID":"805b94e2dc7a","MemPerc":"0.06%","MemUsage":"6.555MiB / 11.6GiB","Name":"web","NetIO":"82.8kB / 2.44kB","PIDs":"5"}
 
 Step 17: How to download deployment code.
-$ git clone https://github.com/michaelorden/CloudOpsAssignment.git
+# git clone https://github.com/michaelorden/CloudOpsAssignment.git
