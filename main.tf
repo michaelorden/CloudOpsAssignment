@@ -120,11 +120,7 @@ resource "aws_instance" "nginx_server" {
 
   # nginx installation
   # storing the nginx.sh file in the EC2 instnace
-  provisioner "file" {
-    source      = "Dockerfile"
-    destination = "/tmp/Dockerfile"
-  }
-  provisioner "file" {
+    provisioner "file" {
     source      = "nginx.sh"
     destination = "/tmp/nginx.sh"
   }
