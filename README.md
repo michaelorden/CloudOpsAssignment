@@ -55,7 +55,7 @@ $ docker ps
 
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 
-805b94e2dc7a   nginx     "/docker-entrypoint.…"   33 minutes ago   Up 33 minutes (Healthy)   0.0.0.0:8080->80/tcp, :::8080->80/tcp   docker-nginx
+da07c746cb2d   nginx     "/docker-entrypoint.…"   33 minutes ago   Up 33 minutes (healthy)   0.0.0.0:80->80/tcp, :::80->80/tcp   docker-nginx
 
 $ docker inspect --format='{{json .State.Health}}' docker-nginx
 
