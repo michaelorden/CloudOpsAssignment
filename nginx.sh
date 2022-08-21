@@ -15,7 +15,9 @@ $(lsb_release -cs) \
 stable"
 sudo apt-get update
 sudo apt-get install docker-ce -y
-#sudo usermod -a -G docker ubuntu
 sudo systemctl enable docker
 sudo systemctl restart docker
-sudo docker run --name docker-nginx -p 80:80 nginx:latest &
+docker build -t docker-nginx .
+docker run -it --rm -d -p 8080:80 --name docker-nginx nginx
+
+
