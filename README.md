@@ -80,7 +80,9 @@ To create a scheduled job every minute
 $ vi resource_log.sh
 
 #!/bin/bash
+
 /usr/bin/docker stats --format='{{json .}}' --no-stream > /root/log
+
 /usr/bin/docker cp /root/log e17bdb4fa00a:/usr/share/nginx/html/log.html
 
 chmod 755 resource_log.sh
