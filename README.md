@@ -94,4 +94,6 @@ $ chmod 755 resource_log.sh
 $ crontab -e
 * * * * * /root/resource_log.sh
 
+Link to check the resource.log
+
 http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/log.html
