@@ -38,7 +38,7 @@ Step 14: Log into your AWS account, and you should see the nginx_server EC2.
 Step 15: Login to the terminal and check health status of nginx web server daemon.
 $ ssh ubuntu@35.90.9.119
 $ sudo -i
-# docker ps
+$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 805b94e2dc7a   nginx     "/docker-entrypoint.…"   33 minutes ago   Up 33 minutes (Healthy)   0.0.0.0:8080->80/tcp, :::8080->80/tcp   docker-nginx
 
