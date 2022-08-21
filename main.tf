@@ -1,5 +1,5 @@
 # Defining providers we will use in this deployement
-# We only need the aws provides. Terraform will retrive the aws provider from hashicorp public registry
+# We only need the aws provides. Terraform will retrive the aws provider from hashicorp bublic registry
 terraform {
   required_providers {
     docker = {
@@ -17,7 +17,7 @@ provider "aws" {
   region  = "us-west-2"
 }
 # First we need to create an aws VPC. We need a VPC to run EC2 ubuntu ami
-# I am going to run an ami-08d70e59c07c61a3a with t2.micro instnace_type to keep things free
+# I am going to run an ami-08d70e59c07c61a3a with t2.micro instance_type to keep things free
 # ami ids change from region to region. You can find them here https://cloud-images.ubuntu.com/locator/ec2/
 # Creating the VPC
 # The code block below uses the aws_vpc module from the aws provider in hashicorp registry
@@ -65,7 +65,7 @@ resource "aws_route_table_association" "prod-crta-public-subnet-1" {
   route_table_id = aws_route_table.prod-public-crt.id
 }
 # Security group
-# Creating this so we can SSH into the VPC and the ami instance to instal nginx port 22
+# Creating this so we can SSH into the VPC and the ami instance to install nginx port 22
 # This also allow us to access the nginx server via the public ip address port 80
 # Documentation is available here: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
 resource "aws_security_group" "ssh-allowed" {
@@ -96,13 +96,14 @@ resource "aws_security_group" "ssh-allowed" {
 }
 # Setting up the aws ssh key. You need to generate one and store it in the same directory
 # We use this to establish the SSH connection to install nginx using remore-exec
+# I think these are best handles using the terraform cloud workspace. I'm not sure how to do that yet.
 # Documentation is available here: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair
 resource "aws_key_pair" "aws-key" {
   key_name   = "aws-key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLfpBl1iJSMGc2nEWLErxD6ng/VJ6UtXgQLyt8KeOvc1xDLNM6OVTKhwwQwOcBCj8ayszzAgvwNMNtvIML8Sf4vGd09jHeKU9hlMJ01GYzgjoQG2TWG029x3S4WS0uX4l+s3C1KduhLu31XTpHMjQ3/TW/EWHoAK9hrucTDcK70+ftNuFXUc3RqKuLcs9hudT8eBiw+SLHGBMSBpfeVj6+yzUyiASud6G1OOiDfoDXevMlQWIRwHb4Em2S0ElTjPQLEdU2lsUgMKMAMt5y/k4bBI5OAFRNgFY54/aJhEvBXB4BoDWomfsn6E5QPNSCxIwcVfFuimbzxA/q399IprD4O9jFdWr3g4UzzLsL7ze85n7rDqtNIpCn2IIhwWuwOiG/2kqHIisfddU7WGxZcPA0XIaKQlQEiafUAFw2kDqLp20OANf9WhEoS3/NY9RTIYekdntFxfHrBeDdQnpWUG1qoywugE643bA5wlGCzRsCHuffmv6mbDQoYYhLMRiLAF0= root@worker01"
 }
-# Setting up the EC2 instnace
-# We are installing ubunto as the core OD
+# Setting up the EC2 instance
+# We are installing ubuntu as the core OD
 resource "aws_instance" "nginx_server" {
   ami           = "ami-08d70e59c07c61a3a"
   instance_type = "t2.micro"
@@ -120,32 +121,21 @@ resource "aws_instance" "nginx_server" {
   # nginx installation
   # storing the nginx.sh file in the EC2 instnace
   provisioner "file" {
-    source      = "nginx1.sh"
-    destination = "/tmp/nginx1.sh"
+    source      = "Dockerfile"
+    destination = "/tmp/Dockerfile"
+  }
+  provisioner "file" {
+    source      = "nginx.sh"
+    destination = "/tmp/nginx.sh"
   }
   # Executing the nginx.sh file
-  # Terraform does not recommend this method becuase Terraform state file cannot track what the scrip is provissioning
+  # Terraform does not recommend this method becuase Terraform state file cannot track what the script is provisioning
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/nginx1.sh",
-      "sudo /tmp/nginx1.sh"
+      "chmod +x /tmp/nginx.sh",
+      "sudo /tmp/nginx.sh"
     ]
   }
-# docker installation
-  # storing the docker.sh file in the EC2 instnace
-#  provisioner "file" {
-#    source      = "docker.sh"
-#    destination = "/tmp/docker.sh"
-#  }
-  # Exicuting the docker.sh file
-  # Terraform does not reccomend this method becuase Terraform state file cannot track what the scrip is provissioning
-#  provisioner "remote-exec" {
-#    inline = [
-#      "chmod +x /tmp/docker.sh",
-#      "sudo /tmp/docker.sh"
-#    ]
-#  }
-
   # Setting up the ssh connection to install the nginx server
   connection {
     type        = "ssh"
@@ -154,4 +144,3 @@ resource "aws_instance" "nginx_server" {
     private_key = file("${var.PRIVATE_KEY_PATH}")
   }
 }
-
