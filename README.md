@@ -98,4 +98,4 @@ $ crontab -e
 
 Link to check the resource.log
 
-http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/log.html
+http://ec2-54-213-233-180.us-west-2.compute.amazonaws.com/log.html
