@@ -18,6 +18,6 @@ sudo apt-get install docker-ce -y
 sudo systemctl enable docker
 sudo systemctl restart docker
 docker build -t docker-nginx .
-docker run -it --rm -d -p 80:80 --name docker-nginx nginx
+docker run -d -p 80:80 --name=docker-nginx --health-cmd='stat /usr/share/nginx/html/index.html || exit 1' --health-interval=10s --health-start-period=3m nginx
 
 
