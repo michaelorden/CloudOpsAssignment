@@ -7,7 +7,7 @@ apt-transport-https \
 ca-certificates \
 curl \
 software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -ec2-35-90-9-119.us-west-2.compute.amazonaws.com 
 sudo apt-key fingerprint 0EBFCD88
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -18,6 +18,6 @@ sudo apt-get install docker-ce -y
 sudo systemctl enable docker
 sudo systemctl restart docker
 docker build -t docker-nginx .
-docker run -it --rm -d -p 8080:80 --name docker-nginx nginx
+docker run -it --rm -d -p 80:80 --name docker-nginx nginx
 
 
