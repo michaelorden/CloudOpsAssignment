@@ -61,9 +61,9 @@ $ docker inspect --format='{{json .State.Health}}' docker-nginx
 
 Step 16: How to check container resource status.
 
-$ docker stats web --no-stream --format "{{ json . }}"
+$ docker stats docker-nginx --no-stream --format "{{ json . }}"
 
-{"BlockIO":"0B / 8.19kB","CPUPerc":"0.00%","Container":"docker-nginx","ID":"805b94e2dc7a","MemPerc":"0.06%","MemUsage":"6.555MiB / 11.6GiB","Name":"web","NetIO":"82.8kB / 2.44kB","PIDs":"5"}
+{"BlockIO":"0B / 8.19kB","CPUPerc":"0.00%","Container":"docker-nginx","ID":"805b94e2dc7a","MemPerc":"0.06%","MemUsage":"6.555MiB / 11.6GiB","Name":"docker-nginx","NetIO":"82.8kB / 2.44kB","PIDs":"5"}
 
 Step 17: How to download deployment code.
 
