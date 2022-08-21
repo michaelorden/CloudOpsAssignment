@@ -92,7 +92,7 @@ $ vi resource_log.sh
 $ chmod 755 resource_log.sh
 
 $ crontab -e
-* * * * * /root/resource_log.sh
+*/1 * * * * /root/resource_log.sh
 
 Link to check the resource.log
 
