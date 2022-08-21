@@ -53,3 +53,26 @@ Step 16: How to check container resource status.
 
 Step 17: How to download deployment code.
 # git clone https://github.com/michaelorden/CloudOpsAssignment.git
+
+Step 18: To create a resource log check in the browser.
+To create a resource docker status to a log file
+
+/usr/bin/docker stats --format='{{json .}}' --no-stream > /root/log
+
+To put the log to the NGINX html directory
+
+/usr/bin/docker cp /root/log 9f729129edc0:/usr/share/nginx/html/log.html
+
+To create a scheduled job every minute
+
+vi resource_log.sh
+#!/bin/bash
+/usr/bin/docker stats --format='{{json .}}' --no-stream > /root/log
+/usr/bin/docker cp /root/log e17bdb4fa00a:/usr/share/nginx/html/log.html
+
+chmod 755 resource_log.sh
+
+crontab -e
+* * * * * /root/resource_log.sh
+
+http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/log.html
