@@ -33,7 +33,7 @@ $ terraform init // initialise terraform
 
 $ terraform fmt // format the code
 
-$ terraform plan -out=/var/tmp/plan.out // This will show you what resources terraform will create$ terraform apply // This will create all the resources in your AWS account.
+$ terraform plan -out=/var/tmp/plan.out // This will show you what resources terraform will create
 
 $ terraform apply "/var/tmp/plan.out" // This will create all the resources in your AWS account
 
