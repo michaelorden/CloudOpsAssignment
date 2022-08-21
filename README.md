@@ -41,11 +41,13 @@ $ terraform plan -out=/var/tmp/plan.out // This will show you what resources ter
 
 $ terraform apply "/var/tmp/plan.out" // This will create all the resources in your AWS account
 
-Step 14: Log into your AWS account, and you should see the nginx_server EC2.
+Step 14: Log into your AWS account, and you should see the nginx_server EC2 and check if website is working.
+
+http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/
 
 Step 15: Login to the terminal and check health status of nginx web server daemon.
 
-$ ssh ubuntu@35.90.9.119
+$ ssh ubuntu@54.213.233.180 
 
 $ sudo -i
 
