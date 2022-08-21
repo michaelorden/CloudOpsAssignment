@@ -89,9 +89,9 @@ $ vi resource_log.sh
 
 /usr/bin/docker cp /root/log e17bdb4fa00a:/usr/share/nginx/html/log.html
 
-chmod 755 resource_log.sh
+$ chmod 755 resource_log.sh
 
-crontab -e
+$ crontab -e
 * * * * * /root/resource_log.sh
 
 http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/log.html
