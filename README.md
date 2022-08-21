@@ -43,7 +43,7 @@ $ terraform apply "/var/tmp/plan.out" // This will create all the resources in y
 
 Step 14: Log into your AWS account, and you should see the nginx_server EC2 and check if website is working.
 
-http://ec2-35-90-9-119.us-west-2.compute.amazonaws.com/
+http://ec2-54-213-233-180.us-west-2.compute.amazonaws.com
 
 Step 15: Login to the terminal and check health status of nginx web server daemon.
 
